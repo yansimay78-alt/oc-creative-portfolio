@@ -2,7 +2,9 @@
 
 以手绘音乐游乐园为主题的个人校招作品集，展示个人介绍、实习项目、摄影作品和留忆产品实践。
 
-**在线访问：[严穗敏 × Mio 作品集](https://oc-creative-portfolio.yansimay78.chatgpt.site/)**
+**在线访问：[严穗敏 × Mio 作品集](https://oc-creative-portfolio.vercel.app/)**
+
+[Sites 备用地址](https://oc-creative-portfolio.yansimay78.chatgpt.site/)
 
 ## 体验
 
@@ -56,7 +58,9 @@ npm run build
 
 ## 部署
 
-使用任意支持静态网站的托管服务，将 **`dist/` 设置为发布目录**。仓库已带有构建结果，可以不运行构建命令。当前在线地址由 Sites 托管；GitHub 仓库用于源码与素材管理，推送本仓库不会自动更新当前在线网站。
+当前部署于 Vercel，已关联本 GitHub 仓库的 `main` 分支。`vercel.json` 指定框架为 Other、构建命令为 `npm run build`、发布目录为 `dist`，并保留目录路径末尾的斜杠。向 `main` 推送更新后，由 Vercel 自动构建和发布。
+
+也可使用其他支持静态网站的托管服务，将 **`dist/` 设置为发布目录**。Sites 备用地址单独维护，不随本仓库推送更新。
 
 ## 作者、参考与使用范围
 
