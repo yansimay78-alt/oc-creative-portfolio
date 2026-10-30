@@ -12,7 +12,7 @@ const html=await readFile(path.join(root,'dist/index.html'),'utf8');
 const routes=['gallery',...(await readdir(path.join(root,'dist/projects'))).map(name=>'projects/'+name)];
 for(const route of routes){
  const prefix='../'.repeat(route.split('/').length);
- const page=html.replace(/(src|href)="((?:assets\/|vendor\/|style\.css|app\.js)[^"]*)"/g,(_,attr,url)=>`${attr}="${prefix}${url}"`);
+ const page=html.replace(/(src|href)="((?:assets\/|vendor\/|projects\/|gallery\/|tools\/|style\.css|additions\.css|app\.js)[^"]*)"/g,(_,attr,url)=>`${attr}="${prefix}${url}"`);
  await writeFile(path.join(root,'dist',route,'index.html'),page);
 }
 console.log('Updated carousel modules and independent page entries.');

@@ -11,3 +11,5 @@ projects['bsh-internship']={title:'BSH 博西家电。<br>让日常更有条理�
 
 // Keep previously shared activity URLs connected to the current case study.
 projects['champion-club']=projects['mcd-internship'];
+
+projects['answer-capsule']={title:'答案之书。<br>让好奇，变成一颗扭蛋。',label:'AI COLLABORATION / 3D INTERACTION',lead:'从“问一个问题，得到一张答案纸条”的想法出发，把等待答案的过程，做成一段可以亲手参与的体验。',meta:[['作品形式','三维互动网页'],['体验流程','提问 · 铸币 · 投币 · 开蛋'],['创作方式','个人构思 · AI 协作实现']],body:`${image('answer-capsule-day.webp','晴光扭蛋所｜原项目实机画面')}<a class="detail-action" href="${new URL('tools/answer-capsule/',import.meta.url).href}">进入扭蛋机，试问一个问题 ↗</a>${section('让答案有一个出场方式','<p>写下问题后，问题凝聚成游戏币；投入机器，胶囊晃动、落到出蛋口，点击拆开，才看到属于这一刻的纸条。让输入到结果之间的等待，也成为体验的一部分。</p>')}${section('从构想到交互','<p>我提出产品形式与完整体验流程，借助 AI 协作实现三维场景、动画和网页交互，并围绕机身质感、背景氛围、视角操作与答案表达持续调整。</p>')}${image('answer-capsule-neon.webp','霓虹主题｜同一台机器，不同的情绪氛围')}${section('体验里的细节','<p>晴光与霓虹双场景；支持拖动环顾、上下调整与视角复位。600 条预置原创短签，根据问法优先抽取，整轮不重复。</p><p>这是借助 AI 完成的互动创作，签文通过本地规则抽取，并非实时调用 AI 生成。把它当作打开思路的小提示，选择仍然留给自己。</p>')}`};

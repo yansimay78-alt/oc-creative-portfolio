@@ -7,6 +7,7 @@ import {createVortexGallery} from './vortex-canvas.js';
 const $=(s)=>document.querySelector(s), $$=(s)=>[...document.querySelectorAll(s)];
 const root=new URL('.',import.meta.url);const asset=(s)=>new URL('assets/'+s,root).href;
 $$('[src],[href]').forEach(el=>{for(const k of ['src','href']){const v=el.getAttribute(k);if(v&&/^(?:\.\.\/)*assets\//.test(v))el.setAttribute(k,asset(v.replace(/^(?:\.\.\/)*assets\//,'')))}});
+$$('[data-capsule-experience]').forEach(a=>a.href=new URL('tools/answer-capsule/',root).href);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let category='landscape';const collections=Object.fromEntries(Object.entries(photoSets).map(([k,v])=>[k,v.map(p=>({...p,src:asset(p.src)}))]));export let photos=collections.landscape;
 let toastTimer;function toast(t){$('.toast').textContent=t;$('.toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('.toast').classList.remove('show'),3200)}
@@ -87,3 +88,6 @@ $$('[data-category]').forEach(b=>b.onclick=()=>{category=b.dataset.category;phot
 $$('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;$$('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#orbit').hidden=mode!=='orbit';$('#infinite-canvas').hidden=mode!=='canvas';$('.canvas-zoom').hidden=mode!=='canvas';renderOrbit();renderCanvas()});
 function animate(t){const dt=Math.min((t-last)/1000,.05)||0;last=t;if(galleryActive()&&!document.hidden){if(!paused&&!drag&&!viewer.open){phase+=dt*.048;spin+=dt*9;}renderOrbit();if(mode==='canvas'){renderCanvas();vortex?.render(dt,paused||viewer.open,drag)}}requestAnimationFrame(animate)}
 buildPhotos();setPause();requestAnimationFrame(animate);window.addEventListener('resize',()=>{renderOrbit();renderCanvas()});route();motion=initMotion();window.addEventListener('popstate',()=>motion?.refresh());
+
+const socialPosts={hongkong:{title:'一个人去香港到底有多爽（内含个人攻略）',stats:'422 赞 · 569 收藏 · 22 评论'},lijiang:{title:'丽江这几个古镇最好哪个都别去',stats:'88 赞 · 52 收藏 · 12 评论'},campus:{title:'青春文案分享｜华农教三真的好好拍啊！！！',stats:'29 赞 · 7 收藏'}};
+$$('[data-social]').forEach(button=>button.addEventListener('click',()=>{const key=button.dataset.social,post=socialPosts[key];photoViewing=-1;openViewer(`<div class="social-preview"><p class="demo-kicker">小红书运营 / 原帖截图</p><h2>${post.title}</h2><p class="social-preview-stats">${post.stats}<small>截图时记录 · 不代表阅读量</small></p><img src="${asset('xhs-'+key+'.webp')}" alt="${post.title}原始完整截图"><a class="detail-action" href="${asset('xhs-'+key+'.webp')}" target="_blank" rel="noopener">单独打开完整截图 ↗</a></div>`)}));

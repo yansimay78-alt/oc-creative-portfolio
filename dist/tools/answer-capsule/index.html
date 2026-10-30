@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#060810">
+  <meta name="description" content="在晴光与霓虹之间，把心事铸成游戏币，打开属于此刻的答案。">
+  <title>晴光扭蛋所 · 答案扭蛋机</title>
+  <link rel="stylesheet" href="./style.css?v=scene-8">
+</head>
+<body>
+  <main class="experience" aria-label="3D 答案扭蛋机">
+    <div id="scene" tabindex="0" aria-label="可交互的三维扭蛋机，可拖动或使用方向键调整视角，Home键复位"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div id="mint-echo" class="mint-echo" hidden aria-hidden="true"><span id="mint-question"></span><small>心事正在凝聚成光</small></div>
+    <header class="hud-header">
+      <a id="brand" class="brand" href="./" aria-label="晴光扭蛋所">
+        <svg class="brand-emblem" viewBox="0 0 40 44" fill="none" aria-hidden="true">
+          <g class="emblem-shell" stroke="currentColor" stroke-width="1.4">
+            <rect x="7.5" y="3" width="25" height="37" rx="12.5"/>
+            <path d="M7.5 23.5c7 3 18 3 25 0M11 10.5c1-2 2.7-3.5 4.8-4.3"/>
+          </g>
+          <g class="emblem-sun" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+            <circle cx="20" cy="15" r="3.7"/>
+            <path d="M20 8.5V7M20 23v-1.5M13.5 15H12M28 15h-1.5M15.4 10.4l-1-1M25.6 20.6l-1-1M15.4 19.6l-1 1M25.6 9.4l-1 1"/>
+          </g>
+          <g class="emblem-neon" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round">
+            <path d="m20 7 2.1 5.9L28 15l-5.9 2.1L20 23l-2.1-5.9L12 15l5.9-2.1Z"/>
+          </g>
+          <path class="emblem-seed" d="m17 31 3 3 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-type"><strong id="brand-name">晴光扭蛋所</strong><span id="brand-caption">DAYLIGHT ORACLE</span></span>
+      </a>
+      <a class="portfolio-return" href="../../#products">← 返回作品集</a>
+      <div class="header-controls">
+        <div class="theme-switch" role="group" aria-label="场景模式">
+          <button id="theme-sunny" type="button" data-theme-choice="sunny" aria-pressed="false">☀ 晴光</button>
+          <button id="theme-cyber" type="button" data-theme-choice="cyber" aria-pressed="true">✦ 霓虹</button>
+        </div>
+        <button id="sound" class="sound-toggle" type="button" aria-label="开启声音" aria-pressed="false" title="切换声音">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="sound-off" d="m16 9 5 6m0-6-5 6"/></svg>
+        </button>
+      </div>
+    </header>
+    <aside class="rail rail-left" aria-hidden="true">
+      <span class="rail-index">01 / ∞</span><span class="rail-line"></span>
+      <span class="vertical-label">A SIGNAL FROM THE UNKNOWN</span><span class="rail-cross">+</span>
+    </aside>
+    <div class="view-controls" role="group" aria-label="调整视角">
+      <span class="view-hint">拖动环顾</span>
+      <button id="view-up" type="button" aria-label="视角上移" title="视角上移">↑</button>
+      <button id="view-reset" type="button" aria-label="恢复初始视角" title="恢复初始视角">◎</button>
+      <button id="view-down" type="button" aria-label="视角下移" title="视角下移">↓</button>
+    </div>
+    <section class="interaction-dock" aria-label="与扭蛋机互动">
+      <p id="status" class="status" role="status" aria-live="polite">写下心里的问题，铸成一枚游戏币。</p>
+      <div class="controls-surface">
+        <form id="form" autocomplete="off">
+          <div class="question-field">
+            <label for="question"><span class="input-indicator"></span> YOUR QUESTION</label>
+            <input id="question" name="question" type="text" maxlength="80" required placeholder="此刻，你想问什么？" enterkeyhint="go" spellcheck="false" aria-label="写下你的问题">
+          </div>
+          <button id="mint" type="submit" disabled><span>生成游戏币</span><span class="button-arrow" aria-hidden="true">↗</span></button>
+        </form>
+        <button id="action" class="action-button" type="button" hidden>投入游戏币 <span aria-hidden="true">↗</span></button>
+      </div>
+      <ol class="steps" aria-label="扭蛋步骤">
+        <li data-step="question" class="active"><span>01</span> 写下问题</li>
+        <li data-step="coin"><span>02</span> 投入游戏币</li>
+        <li data-step="mix"><span>03</span> 等待答案</li>
+        <li data-step="answer"><span>04</span> 打开扭蛋</li>
+      </ol>
+    </section>
+    <div id="loading" class="loading" role="status"><div class="loading-orbit" aria-hidden="true"><i></i></div><span>正在唤醒扭蛋机</span><small>CONNECTING TO THE UNKNOWN</small></div>
+    <div id="fallback" class="fallback" role="alert" hidden><span class="fallback-star">✦</span><h1>三维世界还没有亮起来</h1><p>请使用支持 WebGL 的浏览器，并开启硬件加速后重新载入。</p><a href="./">重新载入 ↗</a></div>
+    <div class="corner-mark corner-left" id="library-count">ORIGINAL ANSWERS / 600</div>
+    <div class="corner-mark corner-right" aria-hidden="true">TRUST THE MOMENT <span>✦</span></div>
+  </main>
+  <div id="overlay" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="answer">
+    <article class="answer-card">
+      <button id="close" class="close" type="button" aria-label="关闭答案">×</button>
+      <div class="note-top"><span id="note-brand">ORACLE CAPSULE</span><span class="note-spark" aria-hidden="true">✦</span><span id="number">ANSWER / 001</span></div>
+      <p id="asked" class="asked"></p>
+      <div class="answer-space"><span class="quote-mark" aria-hidden="true">“</span><p id="answer" class="answer"></p></div>
+      <div class="note-divider" aria-hidden="true"><span></span><i>✧</i><span></span></div>
+      <p class="note-footer">收下这一刻的提示，继续你的故事。</p>
+      <button id="again" class="again" type="button">再问一次 <span aria-hidden="true">↗</span></button>
+      <div class="ticket-tail" aria-hidden="true"><span>ONE QUESTION. ONE POSSIBILITY.</span><div class="barcode"></div></div>
+    </article>
+  </div>
+  <script type="module" src="./app.js?v=scene-8c"></script>
+</body>
+</html>
